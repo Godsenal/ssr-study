@@ -2,6 +2,7 @@ import React from "react";
 import { RequestHandler } from "express";
 import { renderToNodeStream } from "react-dom/server";
 
+import App from "../shared/App";
 import Html from "./Html";
 
 function normalizeAssets(assets: any) {
@@ -21,7 +22,7 @@ const renderer = (): RequestHandler => (req, res, next) => {
     { js: [], css: [] }
   );
 
-  renderToNodeStream(<Html js={js} css={css} />).pipe(res);
+  renderToNodeStream(<Html js={js} css={css} App={<App />} />).pipe(res);
   return next;
 };
 
